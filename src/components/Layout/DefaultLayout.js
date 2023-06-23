@@ -6,6 +6,7 @@ const DefaultLayout = ({ children }) => {
         <Container>
             <Box
                 sx={{
+                    backgroundColor: 'inherit',
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
