@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 
 /*
@@ -15,6 +18,8 @@ const PomodoroTimer = () => {
     const [seconds, setSeconds] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
     const [isFinished, setIsFinished] = useState(false)
+    const [customMinutes, setCustomMinutes] = useState(25)
+    const [showCustomInput, setShowCustomInput] = useState(false)
 
     useEffect(() => {
         let interval
@@ -45,23 +50,60 @@ const PomodoroTimer = () => {
     }
 
     const resetTimer = () => {
-        setMinutes(25);
+        setMinutes(customMinutes);
         setSeconds(0)
         setIsRunning(false)
         setIsFinished(false)
     }
 
+    const handleCustomInputChange = (event) => {
+        setCustomMinutes(Number(event.target.value))
+    }
+
+    const toggleCustomInput = () => {
+        setShowCustomInput(!showCustomInput)
+    }
+
+    const setCustomTimer = () => {
+        setMinutes(customMinutes)
+        setSeconds(0)
+        setIsRunning(false)
+        setIsFinished(false)
+        setShowCustomInput(false)
+    }
+
     return (
         <div>
-            <h2>Time to Focus</h2>
+            <h2 style={{ textAlign: 'center' }} >Time to Focus</h2>
             <div>
-                {minutes.toString().padStart(2, '0')}:
-                {seconds.toString().padStart(2, '0')}
+                <h2 style={{ textAlign: 'center' }}>{minutes.toString().padStart(2, '0')}:
+                    {seconds.toString().padStart(2, '0')}</h2>
             </div>
             {isFinished && <div>Good work!</div>}
-            <button onClick={startTimer}>Start</button>
-            <button onClick={stopTimer}>Stop</button>
-            <button onClick={resetTimer}>Reset</button>
+            <Stack spacing={1} direction="row">
+                <Button onClick={startTimer} variant="contained">Start</Button>
+                <Button onClick={stopTimer} variant="contained">Stop</Button>
+                <Button onClick={resetTimer} variant="contained">Reset</Button>
+                {!showCustomInput && (
+                    <Button onClick={toggleCustomInput} variant="contained">Customise Timer</Button>
+                )}
+            </Stack>
+
+
+            {showCustomInput && (
+                <div>
+                    <br />
+                    <OutlinedInput
+                        type="text"
+                        min={1}
+                        value={Number(customMinutes)}
+                        onChange={handleCustomInputChange}
+                    />
+                    <br />
+                    <Button onClick={setCustomTimer}>Set Timer</Button>
+                    <Button onClick={toggleCustomInput}>Cancel</Button>
+                </div>
+            )}
         </div>
     )
 };
