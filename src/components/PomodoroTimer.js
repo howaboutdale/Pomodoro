@@ -3,24 +3,18 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
-
-/*
-Might make more sense to have a button near the controls to do it, rather than up in the nav. Maybe both?
-
-Need to add in break timer, + customise settings for it
-
-Need to make tasklist component, want to keep that seperate I think to avoid screen clutter
-
-*/
-
 const PomodoroTimer = () => {
     const [workTimerMinutes, setWorkTimerMinutes] = useState(25);
+    const [breakTimerMinutes, setBreakTimerMinutes] = useState(5);
     const [workTimerSeconds, setWorkTimerSeconds] = useState(0);
+    const [breakTimerSeconds, setBreakTimerSeconds] = useState(0);
     const [isWorkTimerRunning, setIsWorkTimerRunning] = useState(false);
+    const [isBreakTimerRunning, setIsBreakTimerRunning] = useState(false);
     const [isWorkTimerFinished, setIsWorkTimerFinished] = useState(false)
-    const [customMinutes, setCustomMinutes] = useState(25)
+    const [isBreakTimerFinished, setIsBreakTimerFinished] = useState(false)
+    const [customWorkMinutes, setCustomWorkMinutes] = useState(25)
+    const [customBreakMinutes, setCustomBreakMinutes] = useState(25)
     const [showCustomInput, setShowCustomInput] = useState(false)
-
 
     // use effect to run on render and again when the elements in the array change
     useEffect(() => {
@@ -36,30 +30,65 @@ const PomodoroTimer = () => {
                 } else {
                     setIsWorkTimerFinished(true)
                     clearInterval(interval)
+                    startBreakTimer()
                 }
             }, 1000)
         }
         return () => clearInterval(interval)
     }, [isWorkTimerRunning, workTimerMinutes, workTimerSeconds])
 
+    useEffect(() => {
+        let interval
+        // setInterval function is very handy, runs the if statements after the specified delay (1000ms)
+        if (isBreakTimerRunning) {
+            interval = setInterval(() => {
+                if (breakTimerSeconds > 0) {
+                    setBreakTimerSeconds(breakTimerSeconds - 1)
+                } else if (breakTimerMinutes > 0) {
+                    setBreakTimerMinutes(breakTimerMinutes - 1)
+                    setBreakTimerSeconds(59)
+                } else {
+                    setIsBreakTimerFinished(true)
+                    clearInterval(interval)
+                    resetTimer()
+                }
+            }, 1000)
+        }
+        return () => clearInterval(interval)
+    }, [isBreakTimerRunning, breakTimerMinutes, breakTimerSeconds])
+
     const startTimer = () => {
         setIsWorkTimerRunning(true)
         setIsWorkTimerFinished(false)
     }
 
+    const startBreakTimer = () => {
+        setIsBreakTimerRunning(true)
+        setIsBreakTimerFinished(false)
+    }
+
     const stopTimer = () => {
         setIsWorkTimerRunning(false)
+        setIsBreakTimerRunning(false)
     }
 
     const resetTimer = () => {
-        setWorkTimerMinutes(customMinutes);
+        setWorkTimerMinutes(customWorkMinutes);
+        setBreakTimerMinutes(customBreakMinutes)
         setWorkTimerSeconds(0)
+        setBreakTimerSeconds(0)
         setIsWorkTimerRunning(false)
+        setIsBreakTimerRunning(false)
         setIsWorkTimerFinished(false)
+        setIsBreakTimerFinished(false)
     }
 
-    const handleCustomInputChange = (event) => {
-        setCustomMinutes(Number(event.target.value))
+    const handleWorkTimeChange = (event) => {
+        setCustomWorkMinutes(Number(event.target.value))
+    }
+
+    const handleBreakTimeChange = (event) => {
+        setCustomBreakMinutes(Number(event.target.value))
     }
 
     const toggleCustomInput = () => {
@@ -67,10 +96,14 @@ const PomodoroTimer = () => {
     }
 
     const setCustomTimer = () => {
-        setWorkTimerMinutes(customMinutes)
+        setWorkTimerMinutes(customWorkMinutes)
+        setBreakTimerMinutes(customBreakMinutes)
         setWorkTimerSeconds(0)
+        setBreakTimerSeconds(0)
         setIsWorkTimerRunning(false)
+        setIsBreakTimerRunning(false)
         setIsWorkTimerFinished(false)
+        setIsBreakTimerFinished(false)
         setShowCustomInput(false)
     }
 
@@ -78,28 +111,56 @@ const PomodoroTimer = () => {
         <div>
             <h2 style={{ textAlign: 'center' }} >Time to Focus</h2>
             <div>
-                <h2 style={{ textAlign: 'center' }}>{workTimerMinutes.toString().padStart(2, '0')}:
-                    {workTimerSeconds.toString().padStart(2, '0')}</h2>
+                <h2 style={{ textAlign: 'center' }}>
+                    {isWorkTimerRunning ? `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}` :
+                        `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`}
+                </h2>
             </div>
-            {isWorkTimerFinished && <div>Good work!</div>}
+
+            {isWorkTimerFinished && <div>Good work! Break Time!</div>}
             <Stack spacing={1} direction="row">
-                <Button onClick={startTimer} variant="contained">Start</Button>
-                <Button onClick={stopTimer} variant="contained">Stop</Button>
-                <Button onClick={resetTimer} variant="contained">Reset</Button>
+                {!showCustomInput && !isWorkTimerRunning && !isBreakTimerRunning && (
+                    <Button onClick={startTimer} variant="contained">
+                        Start
+                    </Button>
+                )}
+
+                {(isWorkTimerRunning || isBreakTimerRunning) && (
+                    <Button onClick={stopTimer} variant="contained">
+                        Stop
+                    </Button>
+                )}
                 {!showCustomInput && (
-                    <Button onClick={toggleCustomInput} variant="contained">Customise Timer</Button>
+                    <Button onClick={resetTimer} variant="contained">
+                        Reset
+                    </Button>
+                )}
+
+                {!showCustomInput && (
+                    <Button onClick={toggleCustomInput} variant="contained">
+                        Customise Timer
+                    </Button>
                 )}
             </Stack>
-
 
             {showCustomInput && (
                 <div>
                     <br />
+                    <label>Work </label>
                     <OutlinedInput
                         type="text"
                         min={1}
-                        value={Number(customMinutes)}
-                        onChange={handleCustomInputChange}
+                        value={Number(customWorkMinutes)}
+                        onChange={handleWorkTimeChange}
+                    />
+                    <br />
+                    <br />
+                    <label>Break </label>
+                    <OutlinedInput
+                        type="text"
+                        min={1}
+                        value={Number(customBreakMinutes)}
+                        onChange={handleBreakTimeChange}
                     />
                     <br />
                     <Button onClick={setCustomTimer}>Set Timer</Button>
