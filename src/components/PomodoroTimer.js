@@ -21,6 +21,8 @@ const PomodoroTimer = () => {
     const [customMinutes, setCustomMinutes] = useState(25)
     const [showCustomInput, setShowCustomInput] = useState(false)
 
+
+    // use effect to run on render and again when the elements in the array change
     useEffect(() => {
         let interval
         // setInterval function is very handy, runs the if statements after the specified delay (1000ms)
