@@ -5,19 +5,19 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 
 /*
-Basic timer functionality, need to add in the ability to customise the minutes/seconds.
-
 Might make more sense to have a button near the controls to do it, rather than up in the nav. Maybe both?
+
+Need to add in break timer, + customise settings for it
 
 Need to make tasklist component, want to keep that seperate I think to avoid screen clutter
 
 */
 
 const PomodoroTimer = () => {
-    const [minutes, setMinutes] = useState(25);
-    const [seconds, setSeconds] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
-    const [isFinished, setIsFinished] = useState(false)
+    const [workTimerMinutes, setWorkTimerMinutes] = useState(25);
+    const [workTimerSeconds, setWorkTimerSeconds] = useState(0);
+    const [isWorkTimerRunning, setIsWorkTimerRunning] = useState(false);
+    const [isWorkTimerFinished, setIsWorkTimerFinished] = useState(false)
     const [customMinutes, setCustomMinutes] = useState(25)
     const [showCustomInput, setShowCustomInput] = useState(false)
 
@@ -26,36 +26,36 @@ const PomodoroTimer = () => {
     useEffect(() => {
         let interval
         // setInterval function is very handy, runs the if statements after the specified delay (1000ms)
-        if (isRunning) {
+        if (isWorkTimerRunning) {
             interval = setInterval(() => {
-                if (seconds > 0) {
-                    setSeconds(seconds - 1)
-                } else if (minutes > 0) {
-                    setMinutes(minutes - 1)
-                    setSeconds(59)
+                if (workTimerSeconds > 0) {
+                    setWorkTimerSeconds(workTimerSeconds - 1)
+                } else if (workTimerMinutes > 0) {
+                    setWorkTimerMinutes(workTimerMinutes - 1)
+                    setWorkTimerSeconds(59)
                 } else {
-                    setIsFinished(true)
+                    setIsWorkTimerFinished(true)
                     clearInterval(interval)
                 }
             }, 1000)
         }
         return () => clearInterval(interval)
-    }, [isRunning, minutes, seconds])
+    }, [isWorkTimerRunning, workTimerMinutes, workTimerSeconds])
 
     const startTimer = () => {
-        setIsRunning(true)
-        setIsFinished(false)
+        setIsWorkTimerRunning(true)
+        setIsWorkTimerFinished(false)
     }
 
     const stopTimer = () => {
-        setIsRunning(false)
+        setIsWorkTimerRunning(false)
     }
 
     const resetTimer = () => {
-        setMinutes(customMinutes);
-        setSeconds(0)
-        setIsRunning(false)
-        setIsFinished(false)
+        setWorkTimerMinutes(customMinutes);
+        setWorkTimerSeconds(0)
+        setIsWorkTimerRunning(false)
+        setIsWorkTimerFinished(false)
     }
 
     const handleCustomInputChange = (event) => {
@@ -67,10 +67,10 @@ const PomodoroTimer = () => {
     }
 
     const setCustomTimer = () => {
-        setMinutes(customMinutes)
-        setSeconds(0)
-        setIsRunning(false)
-        setIsFinished(false)
+        setWorkTimerMinutes(customMinutes)
+        setWorkTimerSeconds(0)
+        setIsWorkTimerRunning(false)
+        setIsWorkTimerFinished(false)
         setShowCustomInput(false)
     }
 
@@ -78,10 +78,10 @@ const PomodoroTimer = () => {
         <div>
             <h2 style={{ textAlign: 'center' }} >Time to Focus</h2>
             <div>
-                <h2 style={{ textAlign: 'center' }}>{minutes.toString().padStart(2, '0')}:
-                    {seconds.toString().padStart(2, '0')}</h2>
+                <h2 style={{ textAlign: 'center' }}>{workTimerMinutes.toString().padStart(2, '0')}:
+                    {workTimerSeconds.toString().padStart(2, '0')}</h2>
             </div>
-            {isFinished && <div>Good work!</div>}
+            {isWorkTimerFinished && <div>Good work!</div>}
             <Stack spacing={1} direction="row">
                 <Button onClick={startTimer} variant="contained">Start</Button>
                 <Button onClick={stopTimer} variant="contained">Stop</Button>
