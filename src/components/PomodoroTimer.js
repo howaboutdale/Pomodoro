@@ -23,6 +23,7 @@ const PomodoroTimer = () => {
     const [customBreakMinutes, setCustomBreakMinutes] = useState(5)
     const [showCustomInput, setShowCustomInput] = useState(false)
     // ---------------------------------------------------------------------------
+    let taskName = ''
 
     // use effect to run on render and again when the elements in the array change
 
@@ -127,6 +128,8 @@ const PomodoroTimer = () => {
     return (
         <div>
             <h2 style={{ textAlign: 'center' }} >Time to Focus</h2>
+            <h3 style={{ textAlign: 'center' }} >{taskName}</h3>
+
             <div>
                 <h2 style={{ textAlign: 'center' }}>
                     {workOrBreak
