@@ -13,9 +13,9 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
 const pages = [
+    { name: " Pomodoro Timer", path: "/pomodoro" },
     { name: "Task List", path: "/tasklist" },
-    { name: "Complete Tasks", path: "/completed" },
-    { name: "Customise", path: "/custom" },
+    { name: "Completed Tasks", path: "/completed" },
     { name: "About", path: "/about" }
 ];
 

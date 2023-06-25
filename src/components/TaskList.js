@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
@@ -15,34 +14,41 @@ const TaskList = () => {
     }
 
     const addTask = () => {
-        setTodoList([...todoList, newTask])
+        const task = {
+            id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
+            taskName: newTask
+        }
+        setTodoList([...todoList, task])
         setNewTask('')
+
+    }
+    const deleteTask = (id) => {
+        setTodoList(todoList.filter((task) => task.id !== id))
 
     }
     return (
         <div>
             <h2>Task List</h2>
             <div>
-                <label>#1 </label>
                 <OutlinedInput
                     onChange={handleChange}
                     value={newTask}
                 />
                 <Button onClick={addTask}>Add Task</Button>
                 <br></br>
-                {todoList.map((task, index) => {
-                    return <div>
-                        <h3 key={index}>
-                            {task}
-                            <IconButton aria-label="delete">
+                {todoList.map((task) => (
+                    <div key={task.id}>
+                        <h3>
+                            {task.taskName}
+                            <Button onClick={() => deleteTask(task.id)}>
                                 <DeleteIcon />
-                            </IconButton>
+                            </Button>
                         </h3>
                     </div>
-                })}
+                ))}
             </div>
         </div>
-    )
+    );
 }
 
 export default TaskList
