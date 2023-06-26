@@ -5,7 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 // Need to break this component down into smaller components
 
-const PomodoroTimer = () => {
+const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
 
     const [workOrBreak, setWorkOrBreak] = useState(true)
     // Timer Minute/Second

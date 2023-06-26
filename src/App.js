@@ -26,7 +26,11 @@ function App() {
           setCurrentTask={setCurrentTask}
         />}
         />
-        <Route path='/pomodoro' element={<PomodoroTimerPage />} />
+        <Route path='/pomodoro' element={<PomodoroTimerPage
+          todoList={todoList}
+          setTodoList={setTodoList}
+          currentTask={currentTask}
+          setCurrentTask={setCurrentTask} />} />
       </Routes>
 
     </Router>
