@@ -1,10 +1,11 @@
+import React from 'react'
 import DefaultLayout from "../Layout/DefaultLayout";
 import TaskList from "../TaskList";
 
-const TaskListPage = () => {
+const TaskListPage = ({ todoList, setTodoList }) => {
     return (
         <DefaultLayout>
-            <TaskList />
+            <TaskList todoList={todoList} setTodoList={setTodoList} />
         </DefaultLayout>
     );
 };

@@ -6,9 +6,11 @@ import PomodoroTimerPage from "./components/Pages/PomodoroTimerPage";
 import AboutPage from "./components/Pages/AboutPage";
 import CompletedTaskListPage from "./components/Pages/CompletedTaskListPage"
 import TaskListPage from "./components/Pages/TaskListPage"
+import { useState } from 'react';
 
 
 function App() {
+  const [todoList, setTodoList] = useState([])
   return (
     <Router>
       <NavBar />
@@ -16,7 +18,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/completed' element={<CompletedTaskListPage />} />
-        <Route path='/tasklist' element={<TaskListPage />} />
+        <Route path='/tasklist' element={<TaskListPage todoList={todoList} setTodoList={setTodoList} />} />
         <Route path='/pomodoro' element={<PomodoroTimerPage />} />
       </Routes>
 

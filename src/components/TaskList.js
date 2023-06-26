@@ -7,8 +7,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PomodoroTimer from './PomodoroTimer';
 
 
-const TaskList = () => {
-    const [todoList, setTodoList] = useState([])
+const TaskList = ({ todoList, setTodoList }) => {
     const [newTask, setNewTask] = useState('')
     const [selectedTask, setSelectedTask] = useState(null)
 
