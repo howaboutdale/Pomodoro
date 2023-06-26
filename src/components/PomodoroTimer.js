@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import TransitionsModal from './ModalMUI';
 
 // Need to break this component down into smaller components
 
@@ -25,6 +26,8 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask }) =
     const [customBreakMinutes, setCustomBreakMinutes] = useState(5)
     const [showCustomInput, setShowCustomInput] = useState(false)
     // ---------------------------------------------------------------------------
+    // Modal Task Completion Integration
+    const [taskComplete, setTaskComplete] = useState(false)
 
     // useEffect to run on render and again when the elements in the array change
 
@@ -139,8 +142,17 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask }) =
         setShowCustomInput(false)
     }
 
+
+
     return (
         <div>
+            {currentTask !== null && isWorkTimerFinished && (
+                <div>
+                    <TransitionsModal
+                        autoOpenModal={true}
+                    />
+                </div>
+            )}
             {isWorkTimerFinished ? <h2 style={{ textAlign: 'center' }} >Enjoy your break!</h2> : <h2 style={{ textAlign: 'center' }} >Time to Focus!</h2>}
 
             <div>

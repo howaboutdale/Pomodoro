@@ -12,6 +12,7 @@ import { useState } from 'react';
 function App() {
   const [todoList, setTodoList] = useState([])
   const [currentTask, setCurrentTask] = useState(null)
+  const [completeTodoList, setCompleteTodoList] = useState([])
   return (
     <Router>
       <NavBar />

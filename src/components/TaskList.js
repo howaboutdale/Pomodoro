@@ -36,8 +36,13 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
         setCurrentTask(null);
     };
 
+    // const log = () => {
+    //     console.log(todoList)
+    // }
+
     return (
         <div>
+            {/* <div><button onClick={log()}>log</button></div> */}
             {currentTask ? (
                 <div>
                     <Button style={{ margin: 'auto', display: 'block' }} onClick={showTaskList} variant="outlined">
