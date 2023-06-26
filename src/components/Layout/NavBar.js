@@ -50,7 +50,7 @@ const Navbar = () => {
                         <Typography
                             variant='h6'
                             noWrap
-                            component='a'
+                            // component='a'
                             href='/pomodoro'
                             sx={{
                                 flexGrow: 1,

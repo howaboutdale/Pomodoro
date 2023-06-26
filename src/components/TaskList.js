@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import Stack from '@mui/material/Stack';
+import React, { useState } from 'react'
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -7,9 +6,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PomodoroTimer from './PomodoroTimer';
 
 
-const TaskList = ({ todoList, setTodoList }) => {
+const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
     const [newTask, setNewTask] = useState('')
-    const [selectedTask, setSelectedTask] = useState(null)
 
     const handleChange = (event) => {
         setNewTask(event.target.value)
@@ -18,7 +16,8 @@ const TaskList = ({ todoList, setTodoList }) => {
     const addTask = () => {
         const task = {
             id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-            taskName: newTask
+            taskName: newTask,
+            isComplete: false
         }
         setTodoList([...todoList, task])
         setNewTask('')
@@ -30,21 +29,25 @@ const TaskList = ({ todoList, setTodoList }) => {
     }
 
     const startTimer = (taskName) => {
-        setSelectedTask(taskName)
+        setCurrentTask(taskName)
     }
 
-    const resetTimer = () => {
-        setSelectedTask(null);
+    const showTaskList = () => {
+        setCurrentTask(null);
     };
+
     return (
         <div>
-            {selectedTask ? (
+            {currentTask ? (
                 <div>
-                    <h2 style={{ textAlign: 'center' }}>Current Task: {selectedTask}</h2>
+                    <Button style={{ margin: 'auto', display: 'block' }} onClick={showTaskList} variant="outlined">
+                        Show Task List
+                    </Button>
+                    <h2 style={{ textAlign: 'center' }}>Current Task: {currentTask}</h2>
                     <PomodoroTimer
-                        taskName={selectedTask}
-                        resetTimer={resetTimer}
                     />
+
+
                 </div>
             ) : (
                 <div>
@@ -67,6 +70,7 @@ const TaskList = ({ todoList, setTodoList }) => {
                     ))}
                 </div>
             )}
+
         </div>
     );
 };

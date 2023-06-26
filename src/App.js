@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 function App() {
   const [todoList, setTodoList] = useState([])
+  const [currentTask, setCurrentTask] = useState(null)
   return (
     <Router>
       <NavBar />
@@ -18,7 +19,13 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/about' element={<AboutPage />} />
         <Route path='/completed' element={<CompletedTaskListPage />} />
-        <Route path='/tasklist' element={<TaskListPage todoList={todoList} setTodoList={setTodoList} />} />
+        <Route path='/tasklist' element={<TaskListPage
+          todoList={todoList}
+          setTodoList={setTodoList}
+          currentTask={currentTask}
+          setCurrentTask={setCurrentTask}
+        />}
+        />
         <Route path='/pomodoro' element={<PomodoroTimerPage />} />
       </Routes>
 

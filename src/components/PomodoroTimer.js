@@ -3,6 +3,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
+// Need to break this component down into smaller components
+
 const PomodoroTimer = () => {
 
     const [workOrBreak, setWorkOrBreak] = useState(true)
@@ -23,9 +25,8 @@ const PomodoroTimer = () => {
     const [customBreakMinutes, setCustomBreakMinutes] = useState(5)
     const [showCustomInput, setShowCustomInput] = useState(false)
     // ---------------------------------------------------------------------------
-    let taskName = ''
 
-    // use effect to run on render and again when the elements in the array change
+    // useEffect to run on render and again when the elements in the array change
 
     // Break Timer useEffect
     useEffect(() => {
@@ -102,11 +103,24 @@ const PomodoroTimer = () => {
     }
 
     const handleWorkTimeChange = (event) => {
-        setCustomWorkMinutes(Number(event.target.value))
+        let newWorkValue = Number(event.target.value)
+        if (newWorkValue < 1) {
+            newWorkValue = 1
+        } else if (newWorkValue > 60) {
+            newWorkValue = 60
+        }
+        setCustomWorkMinutes(newWorkValue)
+
     }
 
     const handleBreakTimeChange = (event) => {
-        setCustomBreakMinutes(Number(event.target.value))
+        let newBreakValue = Number(event.target.value)
+        if (newBreakValue < 1) {
+            newBreakValue = 1
+        } else if (newBreakValue > 60) {
+            newBreakValue = 60
+        }
+        setCustomBreakMinutes(newBreakValue)
     }
 
     const toggleCustomInput = () => {
@@ -127,8 +141,7 @@ const PomodoroTimer = () => {
 
     return (
         <div>
-            <h2 style={{ textAlign: 'center' }} >Time to Focus</h2>
-            <h3 style={{ textAlign: 'center' }} >{taskName}</h3>
+            {isWorkTimerFinished ? <h2 style={{ textAlign: 'center' }} >Enjoy your break!</h2> : <h2 style={{ textAlign: 'center' }} >Time to Focus!</h2>}
 
             <div>
                 <h2 style={{ textAlign: 'center' }}>
@@ -143,7 +156,6 @@ const PomodoroTimer = () => {
                 </h2>
             </div>
 
-            {isWorkTimerFinished && <div>Good work! Break Time!</div>}
             <Stack spacing={1} direction="row">
                 {!showCustomInput && !isWorkTimerRunning && !isBreakTimerRunning && (
                     <Button onClick={startTimer} variant="contained">
@@ -175,7 +187,7 @@ const PomodoroTimer = () => {
                     <label>Work </label>
                     <OutlinedInput
                         type="number"
-                        min={1}
+                        inputProps={{ min: 1, max: 60 }}
                         value={Number(customWorkMinutes)}
                         onChange={handleWorkTimeChange}
                     />
@@ -184,7 +196,7 @@ const PomodoroTimer = () => {
                     <label>Break </label>
                     <OutlinedInput
                         type="number"
-                        min={1}
+                        inputProps={{ min: 1, max: 60 }}
                         value={Number(customBreakMinutes)}
                         onChange={handleBreakTimeChange}
                     />
