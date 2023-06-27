@@ -25,7 +25,7 @@ First, the functionality of the app was written in the form of user stories. Ess
 <img src="https://i.imgur.com/BqDXglu.png" alt="image of the user-stories" width="auto" height="auto">
 
 Then the wireframes for the app were put together using Excalidraw:
-<img src="https://imgur.com/541cff1f-918e-4207-a136-14a188fc44cb" alt="image of the wire-framing" width="auto" height="auto">
+<img src="https://i.imgur.com/lA0DRJ0.png" alt="image of the wire-framing" width="auto" height="auto">
 
 ## :rocket: Cool tech
 
