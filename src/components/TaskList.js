@@ -40,10 +40,15 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
         <div>
             {currentTask ? (
                 <div>
-                    <Button style={{ margin: 'auto', display: 'block' }} onClick={showTaskList} variant="outlined">
-                        Show Task List
-                    </Button>
-                    <h2 style={{ textAlign: 'center' }}>Current Task: {currentTask}</h2>
+                    <div>
+                        <Button style={{ margin: 'auto', display: 'block', marginBottom: '10px' }} onClick={showTaskList} variant="outlined">
+                            Show Task List
+                        </Button>
+                        <h2 style={{ textAlign: 'center' }}>Current Task: {currentTask}</h2>
+
+                    </div>
+
+
                     <PomodoroTimer
                         todoList={todoList}
                         setTodoList={setTodoList}

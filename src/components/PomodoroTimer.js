@@ -188,26 +188,27 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
             </div>
 
             <br />
-            <Stack spacing={1} direction="row">
+            <Stack spacing={1} direction="row" justifyContent="space-between">
                 {!showCustomInput && !isWorkTimerRunning && !isBreakTimerRunning && (
-                    <Button onClick={startTimer} variant="contained">
+                    <Button onClick={startTimer} variant="contained" style={{ flexGrow: 1 }}>
                         Start
                     </Button>
                 )}
 
                 {(isWorkTimerRunning || isBreakTimerRunning) && (
-                    <Button onClick={stopTimer} variant="contained">
+                    <Button onClick={stopTimer} variant="contained" style={{ flexGrow: 1 }}>
                         Stop
                     </Button>
                 )}
+
                 {!showCustomInput && (
-                    <Button onClick={resetTimer} variant="contained">
+                    <Button onClick={resetTimer} variant="contained" style={{ flexGrow: 1 }}>
                         Reset
                     </Button>
                 )}
 
                 {!showCustomInput && (
-                    <Button onClick={toggleCustomInput} variant="contained">
+                    <Button onClick={toggleCustomInput} variant="contained" style={{ flexGrow: 1 }}>
                         Customise Timer
                     </Button>
                 )}

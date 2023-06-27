@@ -14,9 +14,7 @@ This is a fairly simple React implementation of a Pomodoro Timer and task list.
 1.  Of course there are also options to pause and reset the timer.
 1.  As an additional feature there is a task-list. This allows you to produce a list of tasks that you need to work on, if you go to the task list and add a task, you can set that as your current active task. When the timer reaches zero, you will be asked if you managed to complete the task, if you select yes then that task will be added to your completed tasks list. If not, then you can simply go again!
 
-                                IMAGE COMING SOON
-
-    <!-- <img src="./resources/app_screenshot.png" alt="image of the app" width="auto" height="auto"> -->
+    <img src="https://i.imgur.com/ptfDMxG.png" alt="image of the app" width="auto" height="auto">
 
 ## :pencil2: Planning & Problem Solving
 
@@ -24,9 +22,7 @@ The work on this project commenced with a detailed plan on how the app should be
 
 First, the functionality of the app was written in the form of user stories. Essentially what a user would reasonably expect from the app.
 
-<!-- ![image of the user stories for the app](./resources/user_stories.png) -->
-
-                            IMAGE COMING SOON
+![image of the user stories for the app](https://imgur.com/BqDXglu)
 
 Then the wireframes for the app were put together using Excalidraw:
 
