@@ -62,16 +62,18 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
                     <Button onClick={addTask}>Add Task</Button>
                     <br />
                     {todoList.map((task) => (
-                        <div key={task.id}>
-                            <h3 style={{ textAlign: 'center', borderBottom: '1px solid rgba(239, 233, 236, 0.8)' }}>
+                        <div key={task.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <h3 style={{ textAlign: 'center', borderBottom: '1px solid rgba(239, 233, 236, 0.8)', flex: 1 }}>
                                 {task.taskName}
+                            </h3>
+                            <div style={{ display: 'flex' }}>
                                 <Button onClick={() => deleteTask(task.id)}>
                                     <DeleteIcon style={{ color: 'red' }} />
                                 </Button>
                                 <Button onClick={() => startTimer(task.taskName)}>
                                     <PlayArrowIcon />
                                 </Button>
-                            </h3>
+                            </div>
                         </div>
                     ))}
                 </div>

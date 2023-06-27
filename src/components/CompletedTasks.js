@@ -12,13 +12,13 @@ const CompletedTasks = ({ completeTodoList, setCompleteTodoList }) => {
     }
     return (
 
-        <div>
+        <div style={{ border: '1px solid black', borderRadius: '4%', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '10px' }}>
             <h2 style={{ textAlign: 'center' }}>Completed Task List</h2>
             <br />
             {completeTodoList.length > 0 ? (
                 completeTodoList.map((task) => (
-                    <div key={task.id}>
-                        <h3 style={{ textAlign: 'center' }}>
+                    <div key={task.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <h3 style={{ textAlign: 'center', borderBottom: '1px solid rgba(239, 233, 236, 0.8)', flex: 1 }}>
                             {task.taskName}
                             <Button onClick={() => deleteTask(task.id)}>
                                 <DeleteIcon style={{ color: 'red' }} />
@@ -32,9 +32,8 @@ const CompletedTasks = ({ completeTodoList, setCompleteTodoList }) => {
                     <h4>It looks like you haven't completed any tasks yet.</h4>
                     <p> If you navigate to the Task List page, you can add some tasks to complete.</p>
                 </div>
-            )
-            }
-        </div >
+            )}
+        </div>
     )
 }
 

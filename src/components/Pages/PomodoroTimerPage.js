@@ -6,7 +6,9 @@ const PomodoroTimerPage = ({ todoList, setTodoList, currentTask, setCurrentTask,
     // console.log('pomo timer page', currentTask)
     return (
         <DefaultLayout>
-            <h1 style={{ color: 'tomato', textDecoration: 'underline' }}>Pomodoro-Pro</h1>
+            <h1 style={{ color: 'tomato', textDecoration: 'underline' }}>
+                Pomodoro-Pro
+            </h1>
             <PomodoroTimer
                 todoList={todoList}
                 setTodoList={setTodoList}

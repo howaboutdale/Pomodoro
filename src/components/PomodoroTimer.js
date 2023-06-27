@@ -153,7 +153,6 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
             return ((totalBreakSeconds - remainingBreakSeconds) / totalBreakSeconds) * 100;
         }
     };
-    // console.log('pomodoro timer component', currentTask)
     return (
         <div style={{ border: '1px solid black', padding: '10px', borderRadius: '3%' }}>
             {currentTask !== null && isWorkTimerFinished && (
@@ -173,7 +172,7 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                 <h2 style={{ textAlign: 'center' }}>Time to Focus!</h2>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
                 <CircularProgress
                     variant="determinate"
                     value={calculateProgress()}
@@ -181,11 +180,10 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                     thickness={5}
                     style={{ textAlign: 'center', height: 'fit-content', margin: 'auto' }}
                 />
-                <h2 style={{ position: 'absolute', top: '58.5%' }}>
-                    {workOrBreak ?
-                        `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}`
-                        :
-                        `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`}
+                <h2 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) translateY(-19px)' }}>
+                    {workOrBreak
+                        ? `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}`
+                        : `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`}
                 </h2>
             </div>
 
