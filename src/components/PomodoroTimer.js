@@ -3,6 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TransitionsModal from './TransitionsModal';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Need to break this component down into smaller components
 
@@ -139,6 +140,20 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
         setShowCustomInput(false)
     }
 
+    const calculateProgress = () => {
+        if (workOrBreak) {
+            const totalWorkSeconds = customWorkMinutes * 60;
+            const remainingWorkSeconds =
+                workTimerMinutes * 60 + workTimerSeconds;
+            return ((totalWorkSeconds - remainingWorkSeconds) / totalWorkSeconds) * 100;
+        } else {
+            const totalBreakSeconds = customBreakMinutes * 60;
+            const remainingBreakSeconds =
+                breakTimerMinutes * 60 + breakTimerSeconds;
+            return ((totalBreakSeconds - remainingBreakSeconds) / totalBreakSeconds) * 100;
+        }
+    };
+
     return (
         <div>
             {currentTask !== null && isWorkTimerFinished && (
@@ -152,21 +167,29 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                     />
                 </div>
             )}
-            {isWorkTimerFinished ? <h2 style={{ textAlign: 'center' }} >Enjoy your break!</h2> : <h2 style={{ textAlign: 'center' }} >Time to Focus!</h2>}
+            {isWorkTimerFinished ? (
+                <h2 style={{ textAlign: 'center' }}>Enjoy your break!</h2>
+            ) : (
+                <h2 style={{ textAlign: 'center' }}>Time to Focus!</h2>
+            )}
 
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <CircularProgress
+                    variant="determinate"
+                    value={calculateProgress()}
+                    size={120}
+                    thickness={5}
+                    style={{ marginRight: '20px' }}
+                />
                 <h2 style={{ textAlign: 'center' }}>
-                    {workOrBreak
-                        ?
+                    {workOrBreak ?
                         `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}`
                         :
-                        `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`
-                    }
-
-
+                        `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`}
                 </h2>
             </div>
 
+            <br />
             <Stack spacing={1} direction="row">
                 {!showCustomInput && !isWorkTimerRunning && !isBreakTimerRunning && (
                     <Button onClick={startTimer} variant="contained">
@@ -217,7 +240,7 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                 </div>
             )}
         </div>
-    )
-};
+    );
+};;
 
 export default PomodoroTimer
