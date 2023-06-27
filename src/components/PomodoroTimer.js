@@ -179,9 +179,9 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                     value={calculateProgress()}
                     size={120}
                     thickness={5}
-                    style={{ marginRight: '20px' }}
+                    style={{ textAlign: 'center', height: 'fit-content', margin: 'auto' }}
                 />
-                <h2 style={{ textAlign: 'center' }}>
+                <h2 style={{ position: 'absolute', top: '58.5%' }}>
                     {workOrBreak ?
                         `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}`
                         :
@@ -241,6 +241,6 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
             )}
         </div>
     );
-};;
+};
 
 export default PomodoroTimer

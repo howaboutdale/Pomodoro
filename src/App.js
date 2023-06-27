@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/Layout/NavBar";
-import LandingPage from "./components/Pages/LandingPage";
 import PomodoroTimerPage from "./components/Pages/PomodoroTimerPage";
 import AboutPage from "./components/Pages/AboutPage";
 import CompletedTaskListPage from "./components/Pages/CompletedTaskListPage"
