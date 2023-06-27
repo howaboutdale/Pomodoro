@@ -2,7 +2,7 @@
 
 This is a fairly simple React implementation of a Pomodoro Timer and task list.
 
-## :computer: [Pomodoro-Pro] (https://pomodoro-pro.surge.sh/) to try the app!
+## :computer: [Pomodoro-Pro](https://pomodoro-pro.surge.sh/) to try the app!
 
 ## :page_facing_up: About
 
