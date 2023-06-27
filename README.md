@@ -2,7 +2,7 @@
 
 This is a fairly simple React implementation of a Pomodoro Timer and task list.
 
-## :computer: [in progress] (clicky clicky) to try the app!
+## :computer: [Pomodoro-Pro] (https://pomodoro-pro.surge.sh/) to try the app!
 
 ## :page_facing_up: About
 
@@ -28,7 +28,7 @@ First, the functionality of the app was written in the form of user stories. Ess
 
                             IMAGE COMING SOON
 
-Then the wireframes for the app were put together:
+Then the wireframes for the app were put together using Excalidraw:
 
 <!-- ![image of the wireframes for the app](./resources/wire-frame.png)
 ![image of the wireframes for the app](./resources/Project_3,_Entry,_SignUp,_Login.png) -->
@@ -40,12 +40,12 @@ Then the wireframes for the app were put together:
 - Coding languages: HTML, CSS, JavaScript,
 - Framework: React.
 - Code editor: Visual Studio Code.
-- Deployment: IN PROGRESS.
-- Libraries: Materials UI.
+- Deployment: Surge.
+- Libraries: Materials UI/Icons.
 
 ## :scream: Bugs to fix :poop:
 
-- When a user inputs something other than a number into the input fields of the timer, functionality is lost until the page is refreshed.
+- The timer resembles a fidget spinner when customizing the duration, although one could argue that this is a feature.
 
 ## :sob: Lessons learnt
 
@@ -57,3 +57,5 @@ Then the wireframes for the app were put together:
 ## :white_check_mark: Future features
 
 - User Accounts
+- Dark Mode
+- Sounds for timer completion
