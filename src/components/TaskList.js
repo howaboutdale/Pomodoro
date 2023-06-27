@@ -6,7 +6,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PomodoroTimer from './PomodoroTimer';
 
 
-const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
+const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompleteTodoList, completeTodoList }) => {
     const [newTask, setNewTask] = useState('')
 
     const handleChange = (event) => {
@@ -36,13 +36,8 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
         setCurrentTask(null);
     };
 
-    // const log = () => {
-    //     console.log(todoList)
-    // }
-
     return (
         <div>
-            {/* <div><button onClick={log()}>log</button></div> */}
             {currentTask ? (
                 <div>
                     <Button style={{ margin: 'auto', display: 'block' }} onClick={showTaskList} variant="outlined">
@@ -50,6 +45,12 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask }) => {
                     </Button>
                     <h2 style={{ textAlign: 'center' }}>Current Task: {currentTask}</h2>
                     <PomodoroTimer
+                        todoList={todoList}
+                        setTodoList={setTodoList}
+                        currentTask={currentTask}
+                        setCurrentTask={setCurrentTask}
+                        completeTodoList={completeTodoList}
+                        setCompleteTodoList={setCompleteTodoList}
                     />
 
 

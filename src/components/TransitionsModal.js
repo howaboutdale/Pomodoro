@@ -21,11 +21,33 @@ const style = {
     textAlign: 'center'
 };
 
-export default function TransitionsModal({ autoOpenModal }) {
+export default function TransitionsModal({ autoOpenModal, todoList, currentTask, completeTodoList, setCompleteTodoList }) {
     const [open, setOpen] = React.useState(autoOpenModal);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [taskComplete, setTaskComplete] = useState(false)
+
+    const updateTaskCompleteStatus = () => {
+        const updatedTodoList = todoList.map((task) => {
+            if (task.taskName === currentTask) {
+                return { ...task, isComplete: true }
+            }
+            return task
+        })
+        const completedTask = updatedTodoList.find((task => task.taskName === currentTask))
+
+        setCompleteTodoList([...completeTodoList, completedTask])
+        // function that matches currenttask to object in todoList array
+        // then changes that objects .isComplete to true
+        // updates the completeTodoList array by adding the completed task
+    }
+
+    const handleTaskComplete = () => {
+        updateTaskCompleteStatus()
+        handleClose()
+    }
+
+
+
 
     return (
         <div>
@@ -52,7 +74,7 @@ export default function TransitionsModal({ autoOpenModal }) {
                             <Button style={{ margin: 'auto', display: 'block' }} onClick={handleClose} variant="contained">
                                 Not Quite...
                             </Button>
-                            <Button style={{ margin: 'auto', display: 'block' }} onClick={() => setTaskComplete(true)} variant="contained">
+                            <Button style={{ margin: 'auto', display: 'block' }} onClick={handleTaskComplete} variant="contained">
                                 All Done!
                             </Button>
                         </Stack>

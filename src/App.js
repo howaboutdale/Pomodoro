@@ -17,21 +17,31 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path='/' element={<LandingPage />} />
+        <Route path='/' element={<PomodoroTimerPage />} />
         <Route path='/about' element={<AboutPage />} />
-        <Route path='/completed' element={<CompletedTaskListPage />} />
+        <Route path='/completed' element={<CompletedTaskListPage
+          completeTodoList={completeTodoList}
+          setCompleteTodoList={setCompleteTodoList}
+        />}
+        />
         <Route path='/tasklist' element={<TaskListPage
           todoList={todoList}
           setTodoList={setTodoList}
           currentTask={currentTask}
           setCurrentTask={setCurrentTask}
+          completeTodoList={completeTodoList}
+          setCompleteTodoList={setCompleteTodoList}
         />}
         />
         <Route path='/pomodoro' element={<PomodoroTimerPage
           todoList={todoList}
           setTodoList={setTodoList}
           currentTask={currentTask}
-          setCurrentTask={setCurrentTask} />} />
+          setCurrentTask={setCurrentTask}
+          completeTodoList={completeTodoList}
+          setCompleteTodoList={setCompleteTodoList}
+        />}
+        />
       </Routes>
 
     </Router>
