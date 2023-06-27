@@ -25,6 +25,7 @@ export default function TransitionsModal({ autoOpenModal, todoList, currentTask,
     const [open, setOpen] = React.useState(autoOpenModal);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    // console.log('modal component', currentTask)
 
     const updateTaskCompleteStatus = () => {
         const updatedTodoList = todoList.map((task) => {
@@ -42,8 +43,12 @@ export default function TransitionsModal({ autoOpenModal, todoList, currentTask,
     }
 
     const handleTaskComplete = () => {
-        updateTaskCompleteStatus()
-        handleClose()
+        if (currentTask) {
+            updateTaskCompleteStatus()
+            handleClose()
+        } else {
+            handleClose()
+        }
     }
 
 

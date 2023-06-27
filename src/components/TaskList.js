@@ -35,7 +35,7 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
     const showTaskList = () => {
         setCurrentTask(null);
     };
-
+    // console.log('task list component', currentTask)
     return (
         <div>
             {currentTask ? (
@@ -56,14 +56,14 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
 
                 </div>
             ) : (
-                <div>
+                <div style={{ border: '1px solid black', borderRadius: '4%', paddingLeft: '10px', paddingRight: '10px' }}>
                     <h2 style={{ textAlign: 'center' }}>Task List</h2>
                     <OutlinedInput onChange={handleChange} value={newTask} />
                     <Button onClick={addTask}>Add Task</Button>
                     <br />
                     {todoList.map((task) => (
                         <div key={task.id}>
-                            <h3 style={{ textAlign: 'center' }}>
+                            <h3 style={{ textAlign: 'center', borderBottom: '1px solid rgba(239, 233, 236, 0.8)' }}>
                                 {task.taskName}
                                 <Button onClick={() => deleteTask(task.id)}>
                                     <DeleteIcon style={{ color: 'red' }} />

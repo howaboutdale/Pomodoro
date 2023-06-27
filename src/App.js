@@ -12,6 +12,7 @@ function App() {
   const [todoList, setTodoList] = useState([])
   const [currentTask, setCurrentTask] = useState(null)
   const [completeTodoList, setCompleteTodoList] = useState([])
+  // console.log('app component', currentTask)
   return (
     <Router>
       <NavBar />

@@ -153,9 +153,9 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
             return ((totalBreakSeconds - remainingBreakSeconds) / totalBreakSeconds) * 100;
         }
     };
-
+    // console.log('pomodoro timer component', currentTask)
     return (
-        <div>
+        <div style={{ border: '1px solid black', padding: '10px', borderRadius: '3%' }}>
             {currentTask !== null && isWorkTimerFinished && (
                 <div>
                     <TransitionsModal
