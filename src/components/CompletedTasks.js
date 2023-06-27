@@ -10,7 +10,6 @@ const CompletedTasks = ({ completeTodoList, setCompleteTodoList }) => {
         setCompleteTodoList(completeTodoList.filter((task) => task.id !== id))
 
     }
-    console.log(completeTodoList);
     return (
 
         <div>
