@@ -22,7 +22,7 @@ The work on this project commenced with a detailed plan on how the app should be
 
 First, the functionality of the app was written in the form of user stories. Essentially what a user would reasonably expect from the app.
 
-![image of the user stories for the app](https://imgur.com/BqDXglu)
+<img src="https://i.imgur.com/BqDXglu.png" alt="image of the user-stories" width="auto" height="auto">
 
 Then the wireframes for the app were put together using Excalidraw:
 
