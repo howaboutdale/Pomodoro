@@ -56,7 +56,7 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
 
                 </div>
             ) : (
-                <div style={{ border: '1px solid black', borderRadius: '4%', paddingLeft: '10px', paddingRight: '10px' }}>
+                <div style={{ border: '1px solid black', borderRadius: '4%', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '10px' }}>
                     <h2 style={{ textAlign: 'center' }}>Task List</h2>
                     <OutlinedInput onChange={handleChange} value={newTask} />
                     <Button onClick={addTask}>Add Task</Button>

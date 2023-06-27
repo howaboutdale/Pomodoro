@@ -3,8 +3,7 @@ import DefaultLayout from "../Layout/DefaultLayout";
 const AboutPage = () => {
     return (
         <DefaultLayout>
-            <h1>About Page</h1>
-            <h2>Welcome to Pomodoro Pro!</h2>
+            <h1>Welcome to Pomodoro Pro!</h1>
             <h3 style={{ textAlign: 'center', marginTop: '0px' }}>About Us:</h3>
             <p style={{ textAlign: 'center', marginTop: '0px' }}>
 
