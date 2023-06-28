@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
 import Button from '@mui/material/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import DeleteIcon from '@mui/icons-material/Delete';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PomodoroTimer from './PomodoroTimer/PomodoroTimer';
 
 const CompletedTasks = ({ completeTodoList, setCompleteTodoList }) => {
+
     const deleteTask = (id) => {
         setCompleteTodoList(completeTodoList.filter((task) => task.id !== id))
-
     }
-    return (
 
+    return (
         <div style={{ border: '1px solid black', borderRadius: '4%', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '10px' }}>
             <h2 style={{ textAlign: 'center' }}>Completed Task List</h2>
             <br />

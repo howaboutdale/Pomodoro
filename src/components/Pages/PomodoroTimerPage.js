@@ -3,7 +3,6 @@ import DefaultLayout from "../Layout/DefaultLayout";
 import PomodoroTimer from "../PomodoroTimer/PomodoroTimer";
 
 const PomodoroTimerPage = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompleteTodoList, completeTodoList }) => {
-    // console.log('pomo timer page', currentTask)
     return (
         <DefaultLayout>
             <h1 style={{ color: 'tomato', textDecoration: 'underline' }}>

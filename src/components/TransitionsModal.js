@@ -51,9 +51,6 @@ export default function TransitionsModal({ autoOpenModal, todoList, currentTask,
         }
     }
 
-
-
-
     return (
         <div>
             <Modal

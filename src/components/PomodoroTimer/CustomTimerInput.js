@@ -3,8 +3,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 
 const CustomTimerInput = ({ customWorkMinutes, handleWorkTimeChange, customBreakMinutes, handleBreakTimeChange, setCustomTimer, toggleCustomInput }) => {
 
-
-
     return (
         <div>
             <br />

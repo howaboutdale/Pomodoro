@@ -5,7 +5,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PomodoroTimer from './PomodoroTimer/PomodoroTimer';
 
-
 const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompleteTodoList, completeTodoList }) => {
     const [newTask, setNewTask] = useState('')
 
@@ -35,7 +34,7 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
     const showTaskList = () => {
         setCurrentTask(null);
     };
-    // console.log('task list component', currentTask)
+
     return (
         <div>
             {currentTask ? (
@@ -48,7 +47,6 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
 
                     </div>
 
-
                     <PomodoroTimer
                         todoList={todoList}
                         setTodoList={setTodoList}
@@ -57,7 +55,6 @@ const TaskList = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompl
                         completeTodoList={completeTodoList}
                         setCompleteTodoList={setCompleteTodoList}
                     />
-
 
                 </div>
             ) : (
