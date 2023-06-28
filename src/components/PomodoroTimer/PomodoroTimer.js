@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import TransitionsModal from './TransitionsModal';
-import CircularProgress from '@mui/material/CircularProgress';
-
-// Need to break this component down into smaller components
+import TransitionsModal from '../TransitionsModal';
+import TimerDisplay from './TimerDisplay';
+import TimerControls from './TimerControls';
+import CustomTimerInput from './CustomTimerInput';
 
 const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompleteTodoList, completeTodoList }) => {
     const [workOrBreak, setWorkOrBreak] = useState(true)
@@ -172,71 +169,33 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
                 <h2 style={{ textAlign: 'center' }}>Time to Focus!</h2>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <CircularProgress
-                    variant="determinate"
-                    value={calculateProgress()}
-                    size={120}
-                    thickness={5}
-                    style={{ textAlign: 'center', height: 'fit-content', margin: 'auto' }}
-                />
-                <h2 style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%) translateY(-19px)' }}>
-                    {workOrBreak
-                        ? `${workTimerMinutes.toString().padStart(2, '0')}:${workTimerSeconds.toString().padStart(2, '0')}`
-                        : `${breakTimerMinutes.toString().padStart(2, '0')}:${breakTimerSeconds.toString().padStart(2, '0')}`}
-                </h2>
-            </div>
-
+            <TimerDisplay
+                workOrBreak={workOrBreak}
+                workTimerMinutes={workTimerMinutes}
+                workTimerSeconds={workTimerSeconds}
+                breakTimerMinutes={breakTimerMinutes}
+                breakTimerSeconds={breakTimerSeconds}
+                calculateProgress={calculateProgress}
+            />
             <br />
-            <Stack spacing={1} direction="row" justifyContent="space-between">
-                {!showCustomInput && !isWorkTimerRunning && !isBreakTimerRunning && (
-                    <Button onClick={startTimer} variant="contained" style={{ flexGrow: 1 }}>
-                        Start
-                    </Button>
-                )}
-
-                {(isWorkTimerRunning || isBreakTimerRunning) && (
-                    <Button onClick={stopTimer} variant="contained" style={{ flexGrow: 1 }}>
-                        Stop
-                    </Button>
-                )}
-
-                {!showCustomInput && (
-                    <Button onClick={resetTimer} variant="contained" style={{ flexGrow: 1 }}>
-                        Reset
-                    </Button>
-                )}
-
-                {!showCustomInput && (
-                    <Button onClick={toggleCustomInput} variant="contained" style={{ flexGrow: 1 }}>
-                        Customise Timer
-                    </Button>
-                )}
-            </Stack>
+            <TimerControls
+                isWorkTimerRunning={isWorkTimerRunning}
+                isBreakTimerRunning={isBreakTimerRunning}
+                showCustomInput={showCustomInput}
+                startTimer={startTimer}
+                stopTimer={stopTimer}
+                resetTimer={resetTimer}
+                toggleCustomInput={toggleCustomInput}
+            />
 
             {showCustomInput && (
-                <div>
-                    <br />
-                    <label>Work </label>
-                    <OutlinedInput
-                        type="number"
-                        inputProps={{ min: 1, max: 60 }}
-                        value={Number(customWorkMinutes)}
-                        onChange={handleWorkTimeChange}
-                    />
-                    <br />
-                    <br />
-                    <label>Break </label>
-                    <OutlinedInput
-                        type="number"
-                        inputProps={{ min: 1, max: 60 }}
-                        value={Number(customBreakMinutes)}
-                        onChange={handleBreakTimeChange}
-                    />
-                    <br />
-                    <Button onClick={setCustomTimer}>Set Timer</Button>
-                    <Button onClick={toggleCustomInput}>Cancel</Button>
-                </div>
+                <CustomTimerInput
+                    customWorkMinutes={customWorkMinutes}
+                    handleWorkTimeChange={handleWorkTimeChange}
+                    customBreakMinutes={customBreakMinutes}
+                    handleBreakTimeChange={handleBreakTimeChange}
+                    setCustomTimer={setCustomTimer}
+                    toggleCustomInput={toggleCustomInput} />
             )}
         </div>
     );

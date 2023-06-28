@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PomodoroTimer from './PomodoroTimer';
+import PomodoroTimer from './PomodoroTimer/PomodoroTimer';
 
 const CompletedTasks = ({ completeTodoList, setCompleteTodoList }) => {
     const deleteTask = (id) => {

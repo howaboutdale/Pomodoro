@@ -1,6 +1,6 @@
 import React from 'react'
 import DefaultLayout from "../Layout/DefaultLayout";
-import PomodoroTimer from "../PomodoroTimer";
+import PomodoroTimer from "../PomodoroTimer/PomodoroTimer";
 
 const PomodoroTimerPage = ({ todoList, setTodoList, currentTask, setCurrentTask, setCompleteTodoList, completeTodoList }) => {
     // console.log('pomo timer page', currentTask)
