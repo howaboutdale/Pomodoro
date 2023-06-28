@@ -22,9 +22,6 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
     const [customWorkMinutes, setCustomWorkMinutes] = useState(25)
     const [customBreakMinutes, setCustomBreakMinutes] = useState(5)
     const [showCustomInput, setShowCustomInput] = useState(false)
-    // ---------------------------------------------------------------------------
-
-    // useEffect to run on render and again when the elements in the array change
 
     // Break Timer useEffect
     useEffect(() => {
@@ -108,7 +105,6 @@ const PomodoroTimer = ({ todoList, setTodoList, currentTask, setCurrentTask, set
             newWorkValue = 60
         }
         setCustomWorkMinutes(newWorkValue)
-
     }
 
     const handleBreakTimeChange = (event) => {
